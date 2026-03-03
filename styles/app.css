@@ -5,3 +5,8 @@
 .hind_siliguri {
   font-family: "Hind Siliguri", sans-serif;
 }
+
+.active {
+  background-color: #badeff4d;
+  color: #fff;
+}

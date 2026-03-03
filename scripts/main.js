@@ -8,7 +8,7 @@ const loadLessonBtn = async () => {
         const { level_no } = lesson;
         const li = document.createElement("li");
         li.innerHTML = `
-          <button onclick="loadLessonDetails(${level_no})" class="btn btn-outline btn-primary border-2">
+          <button onclick="loadLessonDetails(${level_no})" class="btn btn-outline btn-primary border-2 lesson-btn">
         <i class="fa-solid fa-book-open"></i>
         Lesson ${level_no}
       </button>
@@ -23,8 +23,13 @@ loadLessonBtn();
 // {id: 5, level: 1, word: 'Eager', meaning: 'আগ্রহী', pronunciation: 'ইগার'}
 
 const loadLessonDetails = async (id) => {
-    // const lessonWordContainer = getId("lesson-word-container");
     const lessonSelecte = getId("lesson-select-container");
+    const allLessonBtn = document.querySelectorAll(".lesson-btn");
+    allLessonBtn.forEach((btn) => {
+        btn.classList.remove("bg-primary", "text-white");
+    });
+    const selectedBtn = document.querySelector(`button[onclick="loadLessonDetails(${id})"]`);
+    selectedBtn.classList.add("bg-primary", "text-white");
     const lessonEmptyContainer = getId("lesson-empty-container");
     lessonWordContainer.innerHTML = "";
     const res = await fetch(`https://openapi.programming-hero.com/api/level/${id}`);
