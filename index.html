@@ -21,12 +21,101 @@
       rel="stylesheet"
     />
 
+    <!-- Font-Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
     <!-- Coustom Css -->
     <link rel="stylesheet" href="./styles/app.css" />
   </head>
-  <body>
-    <h1>Welcome to English Janala</h1>
-    <p>Your go-to platform for learning English vocabulary!</p>
+  <body class="poppins">
+    <header>
+      <nav class="bg-[#badeff4d] shadow-sm">
+        <div class="navbar container mx-auto lg:justify-between">
+          <div class="navbar-start">
+            <div class="dropdown">
+              <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 6h16M4 12h8m-8 6h16"
+                  />
+                </svg>
+              </div>
+              <ul
+                tabindex="-1"
+                class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow space-y-3"
+              >
+                <li>
+                  <button class="btn btn-outline btn-primary border-2">
+                    <i class="fa-solid fa-circle-question"></i>
+                    FAQ
+                  </button>
+                </li>
+                <li>
+                  <button class="btn btn-outline btn-primary border-2">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    Learn
+                  </button>
+                </li>
+                <li>
+                  <button class="btn btn-outline btn-primary border-2">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    LogOut
+                  </button>
+                </li>
+              </ul>
+            </div>
+            <a class="btn btn-ghost text-xl"
+              ><span>English</span
+              ><img
+                src="./assets/logo.png"
+                alt="English Janala Logo"
+                class="w-8 ml-2"
+              />
+              <span class="hind_siliguri">জানালা</span>
+            </a>
+          </div>
+
+          <!-- Show for learger device -->
+          <div class="navbar-center hidden lg:flex">
+            <ul class="menu menu-horizontal px-1 gap-4">
+              <li>
+                <button class="btn btn-outline btn-primary border-2">
+                  <i class="fa-solid fa-circle-question"></i>
+                  FAQ
+                </button>
+              </li>
+              <li>
+                <button class="btn btn-outline btn-primary border-2">
+                  <i class="fa-solid fa-graduation-cap"></i>
+                  Learn
+                </button>
+              </li>
+              <li>
+                <button class="btn btn-outline btn-primary border-2">
+                  <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                  LogOut
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
 
     <script src="./scripts/main.js"></script>
   </body>
