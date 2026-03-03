@@ -11,6 +11,8 @@
       rel="stylesheet"
       type="text/css"
     />
+    <!-- fave icon -->
+    <link rel="icon" type="image/x-icon" href="./assets/logo.png" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
     <!-- Google Font = pophin + Hind Siliguri -->
@@ -157,6 +159,41 @@
       </section>
     </header>
 
+    <main>
+      <section class="container mx-auto py-20">
+        <div>
+          <div>
+            <h1 class="text-5xl text-center font-bold">
+              <span class="text-sky-500">Let's </span> Learn Vocabularies
+            </h1>
+          </div>
+          <ul
+            id="lesson-container"
+            class="flex flex-col lg:flex-row flex-wrap items-center justify-center gap-8 mt-12"
+          ></ul>
+          <div
+            id="lesson-word-container"
+            class="bg-slate-100 mt-10 grid grid-cols-1 lg:grid-cols-3 gap-6 p-6 rounded-2xl hidden"
+          ></div>
+          <div
+            id="lesson-select-container"
+            class="flex bg-slate-100 flex-col items-center justify-center gap-6 py-20 mt-8 rounded-lg"
+          >
+            <p class="text-center text-lg hind_siliguri text-neutral-500">
+              আপনি এখনো কোন
+              <span class="poppins">Lesson Select</span> করেন নি।
+            </p>
+            <h2 class="text-center text-4xl">
+              একটি <span class="poppins">Lesson Select</span> করুন।
+            </h2>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- <div class="flex justify-center items-center">
+            <div class="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-primary"></div>
+        </div> -->
+    <script src="./scripts/utils/getId.js"></script>
     <script src="./scripts/main.js"></script>
   </body>
 </html>
