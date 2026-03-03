@@ -1,20 +1,25 @@
 const lessonWordContainer = getId("lesson-word-container");
 const loadLessonBtn = async () => {
-    const loadLessonBtn = getId("lesson-container");
-    const res = await fetch("https://openapi.programming-hero.com/api/levels/all");
-    const data = await res.json();
-    const lessons = data.data;
-    lessons.forEach((lesson) => {
-        const { level_no } = lesson;
-        const li = document.createElement("li");
-        li.innerHTML = `
+    loading(true);
+    try {
+        const loadLessonBtn = getId("lesson-container");
+        const res = await fetch("https://openapi.programming-hero.com/api/levels/all");
+        const data = await res.json();
+        const lessons = data.data;
+        lessons.forEach((lesson) => {
+            const { level_no } = lesson;
+            const li = document.createElement("li");
+            li.innerHTML = `
           <button onclick="loadLessonDetails(${level_no})" class="btn btn-outline btn-primary border-2 lesson-btn">
         <i class="fa-solid fa-book-open"></i>
         Lesson ${level_no}
       </button>
         `;
-        loadLessonBtn.appendChild(li);
-    });
+            loadLessonBtn.appendChild(li);
+        });
+    } finally {
+        loading(false);
+    }
 }
 
 loadLessonBtn();
@@ -23,30 +28,36 @@ loadLessonBtn();
 // {id: 5, level: 1, word: 'Eager', meaning: 'আগ্রহী', pronunciation: 'ইগার'}
 
 const loadLessonDetails = async (id) => {
-    const lessonSelecte = getId("lesson-select-container");
-    const allLessonBtn = document.querySelectorAll(".lesson-btn");
-    allLessonBtn.forEach((btn) => {
-        btn.classList.remove("bg-primary", "text-white");
-    });
-    const selectedBtn = document.querySelector(`button[onclick="loadLessonDetails(${id})"]`);
-    selectedBtn.classList.add("bg-primary", "text-white");
-    const lessonEmptyContainer = getId("lesson-empty-container");
-    lessonWordContainer.innerHTML = "";
-    const res = await fetch(`https://openapi.programming-hero.com/api/level/${id}`);
-    const data = await res.json();
-    const words = data.data;
-    console.log(words);
+    lessonWordContainer.classList.add("hidden");
+    dataLoading(true);
 
-    if (words.length === 0) {
-        lessonWordContainer.classList.add("hidden");
-        lessonEmptyContainer.classList.remove("hidden");
-        return;
-    } else {
-        lessonSelecte.classList.add("hidden");
-        lessonEmptyContainer.classList.add("hidden");
-    }
-    words.forEach((word) => {
-        lessonWordContainer.innerHTML += `
+    try {
+        const lessonSelecte = getId("lesson-select-container");
+        const allLessonBtn = document.querySelectorAll(".lesson-btn");
+        allLessonBtn.forEach((btn) => {
+            btn.classList.remove("bg-primary", "text-white");
+        });
+        const selectedBtn = document.querySelector(`button[onclick="loadLessonDetails(${id})"]`);
+        if (selectedBtn) {
+            selectedBtn.classList.add("bg-primary", "text-white");
+        }
+        const lessonEmptyContainer = getId("lesson-empty-container");
+        lessonWordContainer.innerHTML = "";
+        const res = await fetch(`https://openapi.programming-hero.com/api/level/${id}`);
+        const data = await res.json();
+        const words = data.data;
+        console.log(words);
+
+        if (words.length === 0) {
+
+            lessonEmptyContainer.classList.remove("hidden");
+            return;
+        } else {
+            lessonSelecte.classList.add("hidden");
+            lessonEmptyContainer.classList.add("hidden");
+        }
+        words.forEach((word) => {
+            lessonWordContainer.innerHTML += `
                     <div
                   class="p-8 space-y-5 flex flex-col items-center justify-center rounded-lg bg-white"
                 >
@@ -63,9 +74,12 @@ const loadLessonDetails = async (id) => {
                   </div>
                 </div>
                 `;
-    });
+        });
 
-    lessonWordContainer.classList.remove("hidden");
+        lessonWordContainer.classList.remove("hidden");
+    } finally {
+        dataLoading(false);
+    }
 }
 
 const showWordDetails = async (id) => {
@@ -102,3 +116,21 @@ const createElements = (arr) => {
     const htmlElements = arr.map((el) => `<span class="btn">${el}</span>`);
     return htmlElements.join(" ");
 };
+
+function loading(isLoading) {
+    const loadingContainer = getId("loader");
+    if (isLoading) {
+        loadingContainer.classList.remove("hidden");
+    } else {
+        loadingContainer.classList.add("hidden");
+    }
+}
+
+function dataLoading(isDataLoading) {
+    const dataLoadingContainer = getId("data-loader");
+    if (isDataLoading) {
+        dataLoadingContainer.classList.remove("hidden");
+    } else {
+        dataLoadingContainer.classList.add("hidden");
+    }
+}

@@ -176,6 +176,15 @@
             class="bg-slate-100 mt-10 grid grid-cols-1 lg:grid-cols-3 gap-6 p-6 rounded-2xl hidden"
           ></div>
 
+          <div
+            class="flex justify-center items-center w-full h-dvh bg-white/60 backdrop-blur-sm z-50 hidden"
+            id="data-loader"
+          >
+            <div
+              class="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-primary"
+            ></div>
+          </div>
+
           <div id="lesson-empty-container" class="hidden">
             <div
               class="flex bg-slate-100 flex-col items-center justify-center gap-6 py-20 mt-8 rounded-lg"
@@ -224,9 +233,14 @@
         </dialog>
       </section>
     </main>
-    <!-- <div class="flex justify-center items-center">
-            <div class="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-primary"></div>
-        </div> -->
+    <div
+      class="flex justify-center items-center w-full h-full fixed top-0 left-0 bg-white/60 backdrop-blur-sm z-50 hidden"
+      id="loader"
+    >
+      <div
+        class="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-primary"
+      ></div>
+    </div>
     <script src="./scripts/utils/getId.js"></script>
     <script src="./scripts/main.js"></script>
   </body>
